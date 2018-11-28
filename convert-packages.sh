@@ -1,14 +1,12 @@
 #!/bin/bash
 
-openCypherDirs="org/opencypher/v9_0"
-neo4jDirs="org/neo4j/cypher/internal/v3_5"
-openCypherPackage=`echo $openCypherDirs | sed "s|/|.|g"`
-neo4jPackage=`echo $neo4jDirs | sed "s|/|.|g"`
+# CONFIGURATION
+OPENCYPHER_DIRS="org/opencypher/v9_0"
+NEO4J_DIRS="org/neo4j/cypher/internal/v4_0" #TODO previous versions as well!
+OPENCYPHER_PACKAGE=`echo $OPENCYPHER_DIRS | sed "s|/|.|g"`
+NEO4J_PACKAGE=`echo $NEO4J_DIRS | sed "s|/|.|g"`
 
-echo $openCypherPackage
-echo $neo4jPackage
-
-openCypherLicense='/*
+OPENCYPHER_LICENSE='/*
  * Copyright © 2002-2018 Neo4j Sweden AB (http://neo4j.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,23 +22,25 @@ openCypherLicense='/*
  * limitations under the License.
  */'
 
-echo "CONVERTING PACKAGES FROM $neo4jPackage TO $openCypherPackage"
-for d in ast expressions frontend parser rewriting util; do 
-	echo "  $d"
+echo "CONVERTING PACKAGES FROM $NEO4J_PACKAGE TO $OPENCYPHER_PACKAGE"
+# Go through all relevant folders
+for d in ast expressions frontend parser rewriting util; do
 	for use in main test; do
 		for lang in java scala; do
 			sourceDir="$d/src/$use/$lang"
 			if [ -d $sourceDir ]; then
-				echo "    $sourceDir"
-				mkdir -p "$sourceDir/$openCypherDirs"
-				rm -r "$sourceDir/$openCypherDirs"
-				mv "$sourceDir/$neo4jDirs" "$sourceDir/$openCypherDirs"
-				for sourceFile in `find "$sourceDir/$openCypherDirs" -type f -name "*.$lang"`; do
+				# Move the files to the right place
+				mkdir -p "$sourceDir/$OPENCYPHER_DIRS"
+				rm -r "$sourceDir/$OPENCYPHER_DIRS"
+				mv "$sourceDir/$NEO4J_DIRS" "$sourceDir/$OPENCYPHER_DIRS"
+
+				# For all .java/.scala files:
+				for sourceFile in `find "$sourceDir/$OPENCYPHER_DIRS" -type f -name "*.$lang"`; do
 					# change to open cypher packages
-					cat "$sourceFile" | sed "s/$neo4jPackage/$openCypherPackage/g" > "$sourceFile.temp"
+					cat "$sourceFile" | sed "s/$NEO4J_PACKAGE/$OPENCYPHER_PACKAGE/g" > "$sourceFile.temp"
 					
 					# add open cypher license
-					echo $openCypherLicense > "$sourceFile"
+					echo $OPENCYPHER_LICENSE > "$sourceFile"
 					
 					# copy in rest of code, but omitting any previous license
 					sed -n '/package /,$p' "$sourceFile.temp" >> "$sourceFile"

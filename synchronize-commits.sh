@@ -34,3 +34,6 @@ rm -rf .git/refs/original
 
 # switch to the branch (will be detached HEAD)
 git checkout $NEO4J_BRANCH
+
+# go to root directory
+cd ..

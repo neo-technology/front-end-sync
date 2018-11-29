@@ -1,27 +1,5 @@
 #!/bin/bash
 
-# This script synchronizes the front-end from a Neo4j mono-repo into a opencypher front-end repo
-#
-# For this to work a previous synchronization point is needed, where both repos contained identical
-# front-end sources. To define this point, two commits are needed:
-#
-#	OpenCypher front-end		Neo4j mono-repo front-end
-#	commit7						commit 415		<- commits where sources are the same
-#	commit6						commit 414
-#	commit5						commit 413
-
-# CONFIGURATION
-OPENCYPHER_REPO=sherfert/front-end.git
-# This is the last commit in the frontend. Export since we need it in another script as well
-export OPENCYPHER_COMMIT=01148edb5ca9b49c3173a6f8d7c79c877ddb2f74
-OPENCYPHER_BRANCH_NAME=9.0-sync-test2
-
-NEO4J_REPO=sherfert/neo4j.git
-# This is the first commit that gets moved from neo4j to the frontend. It must be a commit with frontend changes.
-# This must be a 3.5 commit, otherwise we will get conflicts during the rebase
-NEO4J_COMMIT=9705f5073612c669c1861bab4a513c4c84154938
-NEO4J_BRANCH_NAME=4.0-sync-test
-
 # INTERNALS
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 CONVERT_PACKAGES_BIN="$DIR/convert-packages.sh"

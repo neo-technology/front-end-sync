@@ -6,7 +6,13 @@ To define this point, two commits are needed, one from openCypher and one from N
 All changes in versions prior to 3.5 will appear to have been made in merge commits, i.e. the actual commits on 3.4 and previous are not synchronized, but their changes will appear in openCypher frontend.
 
 
-To publish changes from neo4j to the opencypher frontend, run `./publish-opencypher-frontend.sh`. 
+To publish changes from neo4j to the opencypher frontend, run 
+```
+./synchronize-commits.sh
+mvn test
+./publish.sh
+./cleanup.sh
+```
 This needs certain environment variables to be defined before running the script.
 In TeamCity, these are defined in the build configuration.
 If you want to run/test this locally. you can run the following block before invoking the script.

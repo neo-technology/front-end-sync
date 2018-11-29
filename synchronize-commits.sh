@@ -34,6 +34,3 @@ rm -rf .git/refs/original
 
 # switch to the branch (will be detached HEAD)
 git checkout $NEO4J_BRANCH
-
-# Ensure things compile and tests are green, if so, push. Afterwards clean up
-mvn clean test && git push pub HEAD:$OPENCYPHER_BRANCH_NAME && cd .. && rm -rf neo4j

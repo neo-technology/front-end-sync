@@ -2,14 +2,14 @@
 Scripts for syncing the Cypher front-end from the Neo4j mono-repo to the openCypher front-end.
 This will take all changes to the frontend in Neo4j after a certain cutoff point, and apply equivalent commits to the openCypher frontend.
 For this to work a previous synchronization point is needed, where both repos contained identical front-end sources. 
-To define this point, two commits are needed, one from openCypher and one from Neo4j in 3.5.
-All changes in versions prior to 3.5 will appear to have been made in merge commits, i.e. the actual commits on 3.4 and previous are not synchronized, but their changes will appear in openCypher frontend.
+To define this point, two commits are needed, one from openCypher and one from Neo4j.
+All changes in versions prior to the version of the commit you choose will appear to have been made in merge commits, i.e. the actual commits on older versions will not be synchronized, but their changes will appear in openCypher frontend.
 
 
 To publish changes from neo4j to the opencypher frontend, run 
 ```
 ./synchronize-commits.sh
-mvn test
+cd neo4j && mvn test && cd ..
 ./publish.sh
 ./cleanup.sh
 ```
@@ -29,7 +29,7 @@ export OPENCYPHER_BRANCH_NAME=9.0-sync-test2
 export NEO4J_REPO=sherfert/neo4j.git
 # This is the first commit that gets moved from neo4j to the frontend. 
 # It must be a commit with frontend changes. 
-# It must be a 3.5 commit.
+# Be aware that, if this is e.g. a 4.0 commit, all commits from older neo4j branches (e.g. 3.5) will in the frontend appear to be made in merge commits.
 export NEO4J_COMMIT=9705f5073612c669c1861bab4a513c4c84154938
 # The branch in the Neo4j to synchronize changes from:
 export NEO4J_BRANCH_NAME=4.0-sync-test

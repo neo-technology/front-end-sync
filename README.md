@@ -53,7 +53,7 @@ To  get it to work again, follow these steps:
 
 1. Pause the sync job in [Team City](https://live.neo4j-build.io/viewType.html?buildTypeId=Monorepo_PublishFrontend).
 1. Merge your PR (if you haven't already done so anyway).
-1. Follow the steps above to run locally. 
+1. Follow the steps above to run locally.
    After locating the failure:
    * Make any changes to the sync job itself necessary to reflect the new situation (e.g. there is a new module).
      You don't need to worry about having to deal with both the old and the new situation, since you'll be synchronizing only after this change in the future.
@@ -61,6 +61,7 @@ To  get it to work again, follow these steps:
    * Make any necessary commits to the frontend to make it work, e.g. port over any pom changes you made in neo4j.
      You can do this in the `neo4j` folder after having run  `./synchronize-commits.sh` so that your commit will end on top of the commits that actually broke the sync job.
      If it works, push your changes directly to opencypher, with `./publish.sh`.
+     If you don't have push access to the opencypher frontend, ask one of the administrators to grant you access temporarily.
 1. Wait until there is at least one commit in neo4j that touches the frontend _after_ the one that broke the sync job.
 1. Determine the sha1 of the above commit in neo4j (the first frontend-touching commit after the breaking changes).
    Determine the sha1 of the last commit in opencypher. This is likely the one you created in step 3 and pushed manually.

@@ -19,22 +19,22 @@ cd neo4j && mvn test && cd ..
 ```
 This needs certain environment variables to be defined before running the script.
 In TeamCity, these are defined in the build configuration.
-If you want to run/test this locally. you can run the following block before invoking the script.
+If you want to run/test this locally. you can run the following block (or similar, depending on the actual repos/branches) before invoking the script.
 
 ```
 # The openCypher repository:
 export OPENCYPHER_REPO=sherfert/front-end.git
 # This is the last commit in the openCypher frontend:
-export OPENCYPHER_COMMIT=e5efc31518af2036c0a61dc561c6bf130c87f6d2
+export OPENCYPHER_COMMIT=a5d20ed73272fe4f8fb649f05296729e51ace543
 # The branch in the openCypher frontend to synchronize changes to:
-export OPENCYPHER_BRANCH_NAME=9.0-sync-test2
+export OPENCYPHER_BRANCH_NAME=9.0-sync-test
 
 # The Neo4j repository:
 export NEO4J_REPO=sherfert/neo4j.git
 # This is the first commit that gets moved from neo4j to the frontend. 
 # It must be a commit with frontend changes. 
 # Be aware that, if this is e.g. a 4.0 commit, all commits from older neo4j branches (e.g. 3.5) will in the frontend appear to be made in merge commits.
-export NEO4J_COMMIT=9ec076386c7dbb6e30771ae9a6d7e821d39e70f8
+export NEO4J_COMMIT=994705a0f815705f41bed835dd50ff8be1dee149
 # The branch in the Neo4j to synchronize changes from:
 export NEO4J_BRANCH_NAME=4.0-sync-test
 ```

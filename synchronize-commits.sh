@@ -17,23 +17,20 @@ git fetch pub
 # Make a new branch
 git checkout -b sync-branch
 
-# The commit before the synchronization point
-NEO4J_CUTOFF=`git log --format='%H' "$NEO4J_COMMIT^" | head -n 1`
-
 # remove everything apart from the front-end subdirectory
-git filter-branch --force --prune-empty --subdirectory-filter public/community/cypher/front-end -- $NEO4J_CUTOFF..sync-branch
+git filter-branch --force --prune-empty --subdirectory-filter public/community/cypher/front-end -- $NEO4J_COMMIT..sync-branch
 
 # change directories and packages in all commits to org.opencypher.v9_0
-git filter-branch --force --prune-empty --tree-filter "$CONVERT_PACKAGES_BIN" -- $NEO4J_CUTOFF..sync-branch
+git filter-branch --force --prune-empty --tree-filter "$CONVERT_PACKAGES_BIN" -- $NEO4J_COMMIT..sync-branch
 
 # change all commits, such that they keep poms/notice/license files untouched
-git filter-branch --force --prune-empty --tree-filter "$RESTORE_FILES_BIN" -- $NEO4J_CUTOFF..sync-branch
+git filter-branch --force --prune-empty --tree-filter "$RESTORE_FILES_BIN" -- $NEO4J_COMMIT..sync-branch
 
 # linearize the history (every commit gets only a single parent)
-git filter-branch --force --parent-filter 'cut -f 2,3 -d " "' -- $NEO4J_CUTOFF..sync-branch
+git filter-branch --force --parent-filter 'cut -f 2,3 -d " "' -- $NEO4J_COMMIT..sync-branch
 
 # put the history on top of the opencypher history
-git replace $NEO4J_CUTOFF $OPENCYPHER_COMMIT
+git replace $NEO4J_COMMIT $OPENCYPHER_COMMIT
 git filter-branch --force -- $OPENCYPHER_COMMIT..sync-branch
 
 # Safety checks

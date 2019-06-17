@@ -31,7 +31,7 @@ export OPENCYPHER_BRANCH_NAME=9.0-sync-test
 
 # The Neo4j repository:
 export NEO4J_REPO=sherfert/neo4j.git
-# This is the first commit that gets moved from neo4j to the frontend. 
+# This is the last commit that got already synchronized previously.
 # It must be a commit with frontend changes. 
 # Be aware that, if this is e.g. a 4.0 commit, all commits from older neo4j branches (e.g. 3.5) will in the frontend appear to be made in merge commits.
 export NEO4J_COMMIT=994705a0f815705f41bed835dd50ff8be1dee149
@@ -63,7 +63,7 @@ To  get it to work again, follow these steps:
      If it works, push your changes directly to opencypher, with `./publish.sh`.
      If you don't have push access to the opencypher frontend, ask one of the administrators to grant you access temporarily.
 1. Wait until there is at least one commit in neo4j that touches the frontend _after_ the one that broke the sync job.
-1. Determine the sha1 of the above commit in neo4j (the first frontend-touching commit after the breaking changes).
+1. Determine the sha1 of the last commit in neo4j that was successfully synchronized before.
    Determine the sha1 of the last commit in opencypher. This is likely the one you created in step 3 and pushed manually.
    Put both these shas in this readme in the Run locally section and in the Team City job.
 1. Re-enable the Team City job.

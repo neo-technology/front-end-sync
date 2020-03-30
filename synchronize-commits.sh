@@ -8,6 +8,9 @@ RESTORE_FILES_BIN="$DIR/restore-pom-license-notices.sh"
 
 NEO4J_BRANCH=origin/$NEO4J_BRANCH_NAME
 
+#Suppress warning
+export FILTER_BRANCH_SQUELCH_WARNING=1
+
 # fetch source trees
 git clone git@github.com:$NEO4J_REPO neo4j
 cd neo4j

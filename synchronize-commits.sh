@@ -17,6 +17,9 @@ cd neo4j
 git remote add pub git@github.com:$OPENCYPHER_REPO
 git fetch pub
 
+# Checkout correct neo4j branch
+git checkout $NEO4J_BRANCH
+
 # Make a new branch
 git checkout -b sync-branch
 

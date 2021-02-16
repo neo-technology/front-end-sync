@@ -37,12 +37,6 @@ export NEO4J_COMMIT=f1793a3da1baba5c1287e1bcb259299a1700e99c
 export NEO4J_BRANCH_NAME=4.0-sync-test
 ```
 
-## Update the year in the license headers
-
-When you want to update the license headers, you need to change the file opencypher-license.txt in this repository.
-You then need to update the two synchronization commits, both in this README and in TeamCity.
-Make sure to have at least one commit to sync afterwards, as explained above.
-
 ## Dealing with failures
 
 If the sync job starts failing or you have a PR that you are certain/afraid it will break the sync job, this should hopefully help you.

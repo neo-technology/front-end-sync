@@ -24,7 +24,7 @@ If you want to run/test this locally. you can run the following block (or simila
 # The openCypher repository:
 export OPENCYPHER_REPO=sherfert/front-end.git
 # This is the last commit in the openCypher frontend:
-export OPENCYPHER_COMMIT=f98fff12aae8237be090e5dd09f8b3a90f20577d
+export OPENCYPHER_COMMIT=8fd2037cceea9ee7401b8760f67d9d0ee2586298
 # The branch in the openCypher frontend to synchronize changes to:
 export OPENCYPHER_BRANCH_NAME=9.0-sync-test
 
@@ -32,16 +32,10 @@ export OPENCYPHER_BRANCH_NAME=9.0-sync-test
 export NEO4J_REPO=sherfert/neo4j.git
 # This is the last commit that got already synchronized previously.
 # It must be a commit with frontend changes. 
-export NEO4J_COMMIT=f1793a3da1baba5c1287e1bcb259299a1700e99c
+export NEO4J_COMMIT=2627b1ce2aaf7de921a283c6f1811ea05a8f002c
 # The branch in the Neo4j to synchronize changes from:
 export NEO4J_BRANCH_NAME=4.0-sync-test
 ```
-
-## Update the year in the license headers
-
-When you want to update the license headers, you need to change the file opencypher-license.txt in this repository.
-You then need to update the two synchronization commits, both in this README and in TeamCity.
-Make sure to have at least one commit to sync afterwards, as explained above.
 
 ## Dealing with failures
 

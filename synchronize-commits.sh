@@ -17,6 +17,9 @@ cd neo4j
 git remote add pub git@github.com:$OPENCYPHER_REPO
 git fetch pub
 
+# Checkout correct neo4j branch
+git checkout $NEO4J_BRANCH
+
 # Make a new branch
 git checkout -b sync-branch
 
@@ -38,7 +41,9 @@ git filter-branch --force -- $OPENCYPHER_COMMIT..sync-branch
 
 # Safety checks
 # Number of commits must be smaller than 1000
-test `git rev-list --count HEAD` -lt 1000
+NUMBER_OF_COMMITS=$( git rev-list --count HEAD )
+echo Number of commits to sync: $NUMBER_OF_COMMITS
+test $NUMBER_OF_COMMITS -lt 10000
 # Should not contain some certain key commits from neo4j
 git branch --contains 20c2e0b0d0a813806e729ec248c9d18cf9b1cc47 | (! grep sync-branch) # the creation of the private/pom.xml
 git branch --contains 9c4f3c010b03070098c2102d46d347bac809f4e5 | (! grep sync-branch) # the creation of the neo repo

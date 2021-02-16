@@ -35,13 +35,13 @@ for d in ast ast-factory cypher-macros expressions frontend javacc-parser neo4j-
                         rm "$sourceFile.temp"
                     done
 
-                    # Special handling for cypher.jj file
-                    for jjFile in `find "$sourceDir/$OPENCYPHER_DIR" -type f -name "cypher.jj"`; do
+                    # Special handling for *.jj files
+                    for jjFile in `find "$sourceDir/$OPENCYPHER_DIR" -type f -name "*.jj"`; do
                        # change to open cypher package
                         cat "$jjFile" | sed "s/$neo4jPackage/$OPENCYPHER_PACKAGE/g" > "$jjFile.temp"
 
                         # copy in all code up until the search string (i.e. before the Neo4j license)
-                        searchString="PARSER_BEGIN(Cypher)"
+                        searchString="PARSER_BEGIN"
                         sed -n "1,/${searchString}/p" "$jjFile.temp" > "$jjFile"
 
                         # insert the open cypher license

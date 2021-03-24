@@ -32,7 +32,7 @@ export OPENCYPHER_BRANCH_NAME=9.0-sync-test
 export NEO4J_REPO=sherfert/neo4j.git
 # This is the last commit that got already synchronized previously.
 # It must be a commit with frontend changes. 
-export NEO4J_COMMIT=d8b01dc86f331b32631b9fcddfa1804f442e5d65
+export NEO4J_COMMIT=9b825e88597802420189b38b445e2d776a0da6d2
 # The branch in the Neo4j to synchronize changes from:
 export NEO4J_BRANCH_NAME=4.0-sync-test
 ```

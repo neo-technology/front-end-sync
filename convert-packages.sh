@@ -9,7 +9,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 OPENCYPHER_LICENSE="$DIR/opencypher-license.txt"
 
 # Go through all relevant folders
-for d in ast ast-factory cypher-macros expressions frontend javacc-parser neo4j-ast-factory parser rewriting util; do
+for d in ast ast-factory cypher-macros expressions frontend javacc-parser neo4j-ast-factory parser rewriting util test-util; do
 	for use in main test; do
 		for lang in java scala; do
 			sourceDir="$d/src/$use/$lang"

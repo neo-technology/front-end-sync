@@ -11,6 +11,7 @@ So, whenever you touch the synchronization point, make sure there is at least on
 
 To publish changes from neo4j to the opencypher frontend, run 
 ```
+./checkout-neo4j.sh
 ./synchronize-commits.sh
 cd neo4j && mvn test && cd ..
 ./publish.sh

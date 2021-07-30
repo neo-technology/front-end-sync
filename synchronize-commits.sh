@@ -6,19 +6,13 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 CONVERT_PACKAGES_BIN="$DIR/convert-packages.sh"
 RESTORE_FILES_BIN="$DIR/restore-pom-license-notices.sh"
 
-NEO4J_BRANCH=origin/$NEO4J_BRANCH_NAME
-
 #Suppress warning
 export FILTER_BRANCH_SQUELCH_WARNING=1
 
-# fetch source trees
-git clone git@github.com:$NEO4J_REPO neo4j
+# fetch opencypher
 cd neo4j
 git remote add pub git@github.com:$OPENCYPHER_REPO
 git fetch pub
-
-# Checkout correct neo4j branch
-git checkout $NEO4J_BRANCH
 
 # Make a new branch
 git checkout -b sync-branch

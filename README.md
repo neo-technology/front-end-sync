@@ -44,8 +44,10 @@ If the sync job starts failing or you have a PR that you are certain/afraid it w
 The sync job can start failing because you made changes to pom files, you changed modules or directory structures or something similar.
 To  get it to work again, follow these steps:
 
-1. Pause the sync job in [Team City](https://live.neo4j-build.io/viewType.html?buildTypeId=Monorepo_PublishFrontend).
-1. Merge your PR (if you haven't already done so anyway).
+1. Pause the sync job in [Team City](https://live.neo4j-build.io/viewType.html?buildTypeId=Monorepo_PublishFrontend) by disabling the trigger.
+1. Delete the dependency from `build` to `Publish frontend PR test` on [TeamCity](https://live.neo4j-build.io/admin/editDependencies.html?id=buildType:Neo4jDev_PullRequests_Build)
+   This will allow other PRs to be green while you make your fixes.
+1. Merge your PR.
 1. Follow the steps above to run locally.
    After locating the failure:
    * Make any changes to the sync job itself necessary to reflect the new situation (e.g. there is a new module).
@@ -58,5 +60,14 @@ To  get it to work again, follow these steps:
 1. Wait until there is at least one commit in neo4j that touches the frontend _after_ the one that broke the sync job.
 1. Determine the sha1 of the last commit in neo4j that was successfully synchronized before.
    Determine the sha1 of the last commit in opencypher. This is likely the one you created in step 3 and pushed manually. This must not be a merge commit!
-   Put both these shas in this readme in the Run locally section and in the Team City job.
-1. Re-enable the Team City job.
+   Put both these shas in this readme in the Run locally section and in the [Team City template](https://live.neo4j-build.io/admin/editBuildParams.html?id=template:Monorepo_PublishFrontendTemplate).
+1. Re-enable the sync job in [Team City](https://live.neo4j-build.io/viewType.html?buildTypeId=Monorepo_PublishFrontend) by re-enabling the trigger.
+1. Restore the dependency from `build` to `Publish frontend PR test` on [TeamCity](https://live.neo4j-build.io/admin/editDependencies.html?id=buildType:Neo4jDev_PullRequests_Build).
+   The dependency settings are as follows: 
+   ```
+   New build will use the same revisions as in the dependency
+   Do not run new build if there is a suitable one
+   Only use successful builds from suitable ones
+   On failed dependency: run build, but add problem
+   On failed to start/canceled dependency: run build, but add problem
+   ```

@@ -25,7 +25,7 @@ If you want to run/test this locally. you can run the following block (or simila
 # The openCypher repository:
 export OPENCYPHER_REPO=openCypher/front-end.git
 # This is the last commit in the openCypher frontend:
-export OPENCYPHER_COMMIT=88eb63e0691bbfadcaaeac09928840d06aa4b7a9
+export OPENCYPHER_COMMIT=9a21d2986e946c814fd5a156c6f245b29d479d37
 # The branch in the openCypher frontend to synchronize changes to:
 export OPENCYPHER_BRANCH_NAME=9.0
 

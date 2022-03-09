@@ -25,7 +25,7 @@ If you want to run/test this locally. you can run the following block (or simila
 # The openCypher repository:
 export OPENCYPHER_REPO=openCypher/front-end.git
 # This is the last commit in the openCypher frontend:
-export OPENCYPHER_COMMIT=6b354b37e0604a67fe65fd54fc17bc9ec5c5eaa5
+export OPENCYPHER_COMMIT=88eb63e0691bbfadcaaeac09928840d06aa4b7a9
 # The branch in the openCypher frontend to synchronize changes to:
 export OPENCYPHER_BRANCH_NAME=9.0
 
@@ -33,7 +33,7 @@ export OPENCYPHER_BRANCH_NAME=9.0
 export NEO4J_REPO=neo-technology/neo4j.git
 # This is the last commit that got already synchronized previously.
 # It must be a commit with frontend changes. 
-export NEO4J_COMMIT=d5bf743a87f45831c08cfbe196445bdeeea7f5f6
+export NEO4J_COMMIT=e9788a0482677693da2558fc2d4b7af2bfe78a38
 # The branch in the Neo4j to synchronize changes from:
 export NEO4J_BRANCH_NAME=dev
 ```
